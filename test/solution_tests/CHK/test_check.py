@@ -68,4 +68,8 @@ class TestCheck():
     def test_22(self):
         assert checkout_solution.checkout('UUUUUU') == 200
 
+    def test_23(self):
+        assert checkout_solution.checkout('UUU') == 120
+
+
 
