@@ -20,6 +20,9 @@ def checkout(skus):
     if is_counted == -1:
         return -1
 
+    checkout_price = calculate_checkout_value(prices, item_counts)
+    return checkout_price
+
 def count_items(skus, prices, item_counts):
     for item in skus:
         if item not in prices:
