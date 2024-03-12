@@ -76,9 +76,3 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
-
-
-
-
-
-
