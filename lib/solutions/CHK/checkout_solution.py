@@ -12,12 +12,12 @@ def checkout(skus):
         'C': {'price': 20},
         'D': {'price': 15},
         'E': {'price': 40, 'item_free': [(2, {'B': 1})]},
-        'F': {'price': 10, 'item_free': [(2, {'F': 1})], 'require': 3, 'sub': 2},
+        'F': {'price': 10, 'item_free': [(2, {'F': 1})], 'require': 3},
         'G': {'price': 20},
         'H': {'price': 10, 'special_offer': [(10, 80), (5, 45)]},
         'I': {'price': 35},
         'J': {'price': 60},
-        'K': {'price': 80, 'special_offer': [(2, 150)]},
+        'K': {'price': 70, 'special_offer': [(2, 120)]},
         'L': {'price': 90},
         'M': {'price': 15},
         'N': {'price': 40, 'item_free': [(3, {'M': 1})]},
@@ -25,14 +25,14 @@ def checkout(skus):
         'P': {'price': 50, 'special_offer': [(5, 200)]},
         'Q': {'price': 30, 'special_offer': [(3, 80)]},
         'R': {'price': 50, 'item_free': [(3, {'Q': 1})]},
-        'S': {'price': 30},
+        'S': {'price': 20},
         'T': {'price': 20},
-        'U': {'price': 40, 'item_free': [(3, {'U': 1})], 'require': 4, 'sub': 3},
+        'U': {'price': 40, 'item_free': [(3, {'U': 1})], 'require': 4},
         'V': {'price': 50, 'special_offer': [(3, 130), (2, 90)]},
         'W': {'price': 20},
-        'X': {'price': 90},
-        'Y': {'price': 10},
-        'Z': {'price': 50},
+        'X': {'price': 17},
+        'Y': {'price': 20},
+        'Z': {'price': 21},
     }
 
     item_counts = {}
@@ -99,4 +99,5 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
