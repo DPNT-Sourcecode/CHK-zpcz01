@@ -34,4 +34,5 @@ def count_items(skus, prices, item_counts):
 
 def calculate_checkout_value(item_counts):
     for item, count in item_counts.items():
-        total +=
+        if 'special_offer' in item_counts[item]:
+            
