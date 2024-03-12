@@ -55,6 +55,3 @@ class TestCheck():
 
     def test_18(self):
         assert checkout_solution.checkout('FF') == 20
-
-
-
