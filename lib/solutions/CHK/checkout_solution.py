@@ -42,18 +42,26 @@ def calculate_checkout_value(prices, item_counts):
     for item, count in item_counts.items():
         price = prices[item]['price']
 
+        if 'item_free' in prices[item]:
+            for free_quantity, free_item in prices[item]['item_free']:
+                free_count = count // free_quantity
+                if item in item_counts:
+                    item_counts[free_item] += free_count
+                else:
+                    item_counts[free_item] = free_count
+
         if 'special_offer' in prices[item]:
             for special_quantity, special_price in prices[item]['special_offer']:
                 special_count = count // special_quantity
-                remainder = count % special_quantity
-                value += special_count * special_price + remainder * price
-
-        elif 'item_free' in prices[item]:
+                remaining_count = count % special_quantity
+                value += special_count * special_price + remaining_count * price
+                count = remaining_count
 
         else:
             value += count * price
 
     return value
+
 
 
 
