@@ -50,6 +50,7 @@ class TestCheck():
     def test_16(self):
         assert checkout_solution.checkout('FFFFFF') == 40
 
-    # def test_17(self):
-    #     assert checkout_solution.checkout('FFFF') == 30
+    def test_17(self):
+        assert checkout_solution.checkout('FFFF') == 30
+
 
