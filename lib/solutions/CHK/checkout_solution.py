@@ -12,7 +12,7 @@ def checkout(skus):
         'C': {'price': 20},
         'D': {'price': 15},
         'E': {'price': 40, 'item_free': [(2, {'B': 1})]},
-        'F': {'price': 10, 'item_free': [(2, {'F': 1})], 'require': 3, 'sub': 1},
+        'F': {'price': 10, 'item_free': [(2, {'F': 1})], 'require': 3, 'sub': 2},
         'G': {'price': 20},
         'H': {'price': 10, 'special_offer': [(10, 80), (5, 45)]},
         'I': {'price': 35},
@@ -78,15 +78,16 @@ def calculate_item_free(prices, item_counts):
             for free_quantity, free_item in prices[item]['item_free']:
                 free_count = item_counts[item] // free_quantity
                 required = prices[item].get('require', 0)
-                offer_amount = item_counts[item] - prices[item].get('sub', 0) * free_count
                 if item_counts[item] < required:
                     continue
                 for key, value in free_item.items():
                     if key in item_counts:
-                        sub_amount = free_count + prices[item].get('sub', 0)
-                        if sub_amount == 0:
-                            sub_amount = free_count
-                        item_counts[key] -= value * sub_amount
+                        # sub_amount = free_count + prices[item].get('sub', 0)
+                        offer_amount = item_counts[item] - prices[item].get('sub', 0) * free_count
+                        # if sub_amount == 0:
+                        #     sub_amount = free_count
+                        # item_counts[key] -= value * sub_amount
+                        item_counts[key] -= offer_amount
                     else:
                         item_counts[key] = 0
 
@@ -101,5 +102,6 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
 
