@@ -85,3 +85,7 @@ class TestCheck():
 
     def test_28(self):
         assert checkout_solution.checkout('STXYZ') == 82
+
+    def test_29(self):
+        assert checkout_solution.checkout('XYZZ') == 62
+
