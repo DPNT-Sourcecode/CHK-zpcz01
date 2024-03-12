@@ -30,7 +30,7 @@ class TestCheck():
         assert checkout_solution.checkout('EE') == 80
 
     def test_10(self):
-        assert checkout_solution.checkout('EEBB') == (80 + 75)
+        assert checkout_solution.checkout('EEBB') == 110
 
     def test_11(self):
         assert checkout_solution.checkout('EEEE') == 160
@@ -42,10 +42,4 @@ class TestCheck():
         assert checkout_solution.checkout('AAAAAAAA') == 330
 
     def test_14(self):
-        assert checkout_solution.checkout('EEBB') == 125
-
-
-
-
-
-
+        assert checkout_solution.checkout('EEBB') == 110
