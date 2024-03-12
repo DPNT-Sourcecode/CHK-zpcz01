@@ -35,3 +35,10 @@ class TestCheck():
     def test_11(self):
         assert checkout_solution.checkout('EEEE') == 160
 
+    def test_12(self):
+        assert checkout_solution.checkout('AAAAA') == 200
+
+    def test_13(self):
+        assert checkout_solution.checkout('AAAAAAAA') == 330
+
+
