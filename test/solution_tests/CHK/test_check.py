@@ -80,3 +80,8 @@ class TestCheck():
     def test_26(self):
         assert checkout_solution.checkout('STXSTX') == 90
 
+    def test_27(self):
+        assert checkout_solution.checkout('SSSSSSS') == 110
+
+    def test_28(self):
+        assert checkout_solution.checkout('STXYZ') == 82

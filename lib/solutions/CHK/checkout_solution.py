@@ -6,7 +6,7 @@ def checkout(skus):
         return -1
 
     # Set prices of items with offers
-    group_offer = (['S', 'T', 'X', 'Y', 'Z'], 45)
+    group_offer = (['S', 'T', 'X', 'Y', 'Z'], 45, 3)
     prices = {
         'A': {'price': 50, 'special_offer': [(5, 200), (3, 130)]},
         'B': {'price': 30, 'special_offer': [(2, 45)]},
@@ -42,7 +42,8 @@ def checkout(skus):
         return -1
 
     calculate_item_free(prices, item_counts)
-    checkout_price = calculate_checkout_value(prices, item_counts)
+    checkout_price = calculate_group_offer(item_counts, group_offer)
+    checkout_price += calculate_checkout_value(prices, item_counts)
     return checkout_price
 
 
@@ -92,16 +93,16 @@ def calculate_item_free(prices, item_counts):
 
 def calculate_group_offer(item_count, group_offer):
     value = 0
-    group, discount = group_offer
+    group, discount, quantity = group_offer
     new_group = ""
     for item in group:
         if item in item_count:
             new_group += (item * item_count[item])
 
-    while len(new_group) >= 3:
-        for i in range(3):
+    while len(new_group) >= quantity:
+        for i in range(quantity):
             item_count[new_group[i]] -= 1
-        new_group = new_group[3:]
+        new_group = new_group[quantity:]
         value += discount
 
     return value
@@ -117,10 +118,3 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
-
-
-
-
-
-
-
