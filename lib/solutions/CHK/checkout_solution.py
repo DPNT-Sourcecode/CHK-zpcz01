@@ -11,7 +11,7 @@ def checkout(skus):
         'B': {'price': 30, 'special_offer': [(2, 45)]},
         'C': {'price': 20},
         'D': {'price': 15},
-        'E': {'price': 40, 'special_offer': [(2, {'B': 1})]},
+        'E': {'price': 40, 'item_free': [(2, {'B': 1})]},
     }
 
     item_counts = {}
@@ -36,6 +36,13 @@ def count_items(skus, prices, item_counts):
     return 0
 
 
+def calculate_special_offer(prices, count):
+    special_quantity, special_price = prices[item]['special_offer']
+    special_count = count // special_quantity
+    remainder = count % special_quantity
+    return special_count * special_price + remainder * price
+
+
 def calculate_checkout_value(prices, item_counts):
     value = 0
 
@@ -50,4 +57,5 @@ def calculate_checkout_value(prices, item_counts):
             value += count * price
 
     return value
+
 
