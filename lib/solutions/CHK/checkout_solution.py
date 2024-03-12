@@ -24,11 +24,15 @@ def checkout(skus):
         'O': {'price': 10},
         'P': {'price': 50, 'special_offer': [(5, 200)]},
         'Q': {'price': 30, 'special_offer': [(3, 80)]},
-        'R': {'price': 40, 'item_free': [(3, {'Q': 1})]},
+        'R': {'price': 50, 'item_free': [(3, {'Q': 1})]},
         'S': {'price': 30},
         'T': {'price': 20},
         'U': {'price': 40, 'item_free': [(3, {'U': 1})]},
         'V': {'price': 50, 'special_offer': [(3, 130), (2, 90)]},
+        'W': {'price': 20},
+        'X': {'price': 90},
+        'Y': {'price': 10},
+        'Z': {'price': 50},
     }
 
     item_counts = {}
@@ -96,6 +100,7 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
 
 
