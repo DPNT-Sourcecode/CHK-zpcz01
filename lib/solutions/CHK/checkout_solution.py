@@ -83,7 +83,7 @@ def calculate_item_free(prices, item_counts):
                 for key, value in free_item.items():
                     if key in item_counts:
                         # sub_amount = free_count + prices[item].get('sub', 0)
-                        offer_amount = item_counts[item] - prices[item].get('sub', 0) * free_count
+                        offer_amount = item_counts[item] - prices[item].get('sub', 1) * free_count
                         # if sub_amount == 0:
                         #     sub_amount = free_count
                         # item_counts[key] -= value * sub_amount
@@ -102,6 +102,7 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
 
 
