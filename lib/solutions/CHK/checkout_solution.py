@@ -44,6 +44,9 @@ def calculate_special_offer(prices, item, count):
         remaining_count = count % special_quantity
         value += special_count * special_price
         count = remaining_count
+
+    value += count * prices[item]['price']
+
     return value
 
 
@@ -52,7 +55,8 @@ def calculate_item_free(prices, item_counts):
         if 'item_free' in prices[item]:
             for free_quantity, free_item in prices[item]['item_free']:
                 free_count = count // free_quantity
-                key, value = free_item
+                key = free_item.key
+                value = free_item.value
                 if item in item_counts:
                     item_counts[key] += value * free_count
                 else:
@@ -69,5 +73,3 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
-
-
