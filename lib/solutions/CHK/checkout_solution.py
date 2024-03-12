@@ -32,4 +32,6 @@ def count_items(skus, prices, item_counts):
 
     return 0
 
-def calculate_items_value(skus, prices, item_counts):
+def calculate_checkout_value(item_counts):
+    for item, count in item_counts.items():
+        total +=
