@@ -1,5 +1,3 @@
-
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -9,10 +7,11 @@ def checkout(skus):
 
     # Set prices of items with offers
     prices = {
-        'A': {'price': 50, 'special_offer': (3, 130)},
+        'A': {'price': 50, 'special_offer': [(3, 130), (5, 200)]},
         'B': {'price': 30, 'special_offer': (2, 45)},
         'C': {'price': 20},
         'D': {'price': 15},
+        'E': {'price': 40, 'special_offer': (2, 'B')},
     }
 
     item_counts = {}
@@ -22,6 +21,7 @@ def checkout(skus):
 
     checkout_price = calculate_checkout_value(prices, item_counts)
     return checkout_price
+
 
 def count_items(skus, prices, item_counts):
     for item in skus:
@@ -34,6 +34,7 @@ def count_items(skus, prices, item_counts):
             item_counts[item] = 1
 
     return 0
+
 
 def calculate_checkout_value(prices, item_counts):
     value = 0
