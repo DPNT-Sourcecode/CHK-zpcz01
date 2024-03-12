@@ -22,7 +22,3 @@ class TestCheck():
 
     def test_7(self):
         assert checkout_solution.checkout('ABCD') == 115
-
-
-
-
