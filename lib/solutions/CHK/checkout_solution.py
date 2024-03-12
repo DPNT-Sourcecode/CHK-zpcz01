@@ -19,6 +19,7 @@ def checkout(skus):
     if is_counted == -1:
         return -1
 
+    calculate_item_free(prices, item_counts)
     checkout_price = calculate_checkout_value(prices, item_counts)
     return checkout_price
 
@@ -46,13 +47,15 @@ def calculate_special_offer(prices, item, count):
     return value
 
 
-def calculate_item_free(prices, item, count, item_counts):
-    for free_quantity, free_item in prices[item]['item_free']:
-        free_count = count // free_quantity
-        if item in item_counts:
-            item_counts[free_item] += free_count
-        else:
-            item_counts[free_item] = free_count
+def calculate_item_free(prices, item_counts):
+    for item, count in item_counts.items():
+        if 'item_free' in prices[item]:
+            for free_quantity, free_item in prices[item]['item_free']:
+                free_count = count // free_quantity
+                if item in item_counts:
+                    item_counts[free_item] += free_count
+                else:
+                    item_counts[free_item] = free_count
 
 
 def calculate_checkout_value(prices, item_counts):
@@ -61,9 +64,6 @@ def calculate_checkout_value(prices, item_counts):
     for item, count in item_counts.items():
         price = prices[item]['price']
 
-        if 'item_free' in prices[item]:
-            calculate_item_free(prices, item, count, item_counts)
-
         if 'special_offer' in prices[item]:
             value += calculate_special_offer(prices, item, count)
 
@@ -71,6 +71,7 @@ def calculate_checkout_value(prices, item_counts):
             value += count * price
 
     return value
+
 
 
 
