@@ -58,5 +58,3 @@ class TestCheck():
 
     def test_19(self):
         assert checkout_solution.checkout('ABCDEF') == 165
-
-
