@@ -27,7 +27,7 @@ def checkout(skus):
         'R': {'price': 50, 'item_free': [(3, {'Q': 1})]},
         'S': {'price': 30},
         'T': {'price': 20},
-        'U': {'price': 40, 'item_free': [(3, {'U': 1})], 'require': 4, 'sub': 2},
+        'U': {'price': 40, 'item_free': [(3, {'U': 1})], 'require': 4, 'sub': 3},
         'V': {'price': 50, 'special_offer': [(3, 130), (2, 90)]},
         'W': {'price': 20},
         'X': {'price': 90},
@@ -78,11 +78,12 @@ def calculate_item_free(prices, item_counts):
             for free_quantity, free_item in prices[item]['item_free']:
                 free_count = item_counts[item] // free_quantity
                 required = prices[item].get('require', 0)
+                offer_amount = item_counts[item] - prices[item].get('sub', 0) * free_count
                 if item_counts[item] < required:
                     continue
                 for key, value in free_item.items():
                     if key in item_counts:
-                        sub_amount = free_count - prices[item].get('sub', 0)
+                        sub_amount = free_count + prices[item].get('sub', 0)
                         if sub_amount == 0:
                             sub_amount = free_count
                         item_counts[key] -= value * sub_amount
@@ -100,4 +101,5 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
