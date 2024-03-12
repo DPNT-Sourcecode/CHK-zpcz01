@@ -89,6 +89,7 @@ def calculate_item_free(prices, item_counts):
                     else:
                         item_counts[key] = 0
 
+
 def calculate_group_offer(item_count, group_offer):
     value = 0
     group, discount = group_offer
@@ -97,7 +98,13 @@ def calculate_group_offer(item_count, group_offer):
         if item in item_count:
             new_group += (item * item_count[item])
 
+    while len(new_group) >= 3:
+        for i in range(3):
+            item_count[new_group[i]] -= 1
+        new_group = new_group[3:]
+        value += discount
 
+    return value
 
 
 def calculate_checkout_value(prices, item_counts):
@@ -110,6 +117,7 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
 
 
