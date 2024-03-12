@@ -12,6 +12,7 @@ def checkout(skus):
         'C': {'price': 20},
         'D': {'price': 15},
         'E': {'price': 40, 'item_free': [(2, {'B': 1})]},
+        'F': {'price': 10, 'item_free': [(2, {'F': 1})], 'require': 3},
     }
 
     item_counts = {}
@@ -73,3 +74,4 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
