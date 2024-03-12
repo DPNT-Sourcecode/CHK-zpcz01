@@ -47,4 +47,8 @@ class TestCheck():
     def test_15(self):
         assert checkout_solution.checkout('FFF') == 20
 
+    def test_16(self):
+        assert checkout_solution.checkout('FFFFFF') == 40
+
+
 
