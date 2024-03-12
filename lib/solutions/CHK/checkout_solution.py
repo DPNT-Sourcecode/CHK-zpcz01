@@ -7,7 +7,7 @@ def checkout(skus):
 
     # Set prices of items with offers
     prices = {
-        'A': {'price': 50, 'special_offer': [(3, 130), (5, 200)]},
+        'A': {'price': 50, 'special_offer': [(5, 200), (3, 130)]},
         'B': {'price': 30, 'special_offer': [(2, 45)]},
         'C': {'price': 20},
         'D': {'price': 15},
@@ -61,8 +61,3 @@ def calculate_checkout_value(prices, item_counts):
             value += count * price
 
     return value
-
-
-
-
-

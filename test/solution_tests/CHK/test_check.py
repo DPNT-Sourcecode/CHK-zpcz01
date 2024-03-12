@@ -2,8 +2,8 @@ from lib.solutions.CHK import checkout_solution
 
 
 class TestCheck():
-    def test_1(self):
-        assert checkout_solution.checkout('AAAA') == 130
+    # def test_1(self):
+    #     assert checkout_solution.checkout('AAA') == 130
 
     # def test_2(self):
     #     assert checkout_solution.checkout('BB') == 45
@@ -23,3 +23,5 @@ class TestCheck():
     # def test_7(self):
     #     assert checkout_solution.checkout('ABCD') == 115
 
+    def test_8(self):
+        assert checkout_solution.checkout('AAAA') == 180
