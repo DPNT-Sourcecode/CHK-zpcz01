@@ -36,17 +36,20 @@ def checkout(skus):
         'Z': {'price': 21, 'group': group_offer},
     }
 
+    # Count number of items -> item: count
     item_counts = {}
     is_counted = count_items(skus, prices, item_counts)
     if is_counted == -1:
         return -1
 
+    # Calculate any free items, then group offers, then specials
     calculate_item_free(prices, item_counts)
     checkout_price = calculate_group_offer(item_counts, group_offer, prices)
     checkout_price += calculate_checkout_value(prices, item_counts)
     return checkout_price
 
 
+# Count items in input
 def count_items(skus, prices, item_counts):
     for item in skus:
         if item not in prices:
@@ -60,19 +63,23 @@ def count_items(skus, prices, item_counts):
     return 0
 
 
+# Calculate the total value of special offer items
 def calculate_special_offer(prices, item, count):
     value = 0
     for special_quantity, special_price in prices[item]['special_offer']:
+        # Add the special price
         special_count = count // special_quantity
         remaining_count = count % special_quantity
         value += special_count * special_price
         count = remaining_count
 
+    # Add remaining prices
     value += count * prices[item]['price']
 
     return value
 
 
+# Calculate all free item offers, updates item_counts
 def calculate_item_free(prices, item_counts):
     item_keys = list(item_counts.keys())
     for item in item_keys:
@@ -84,6 +91,7 @@ def calculate_item_free(prices, item_counts):
                     continue
                 for key, value in free_item.items():
                     if key in item_counts:
+                        # Check amount the needs to be subtracted
                         if required != 0:
                             free_count = item_counts[item] // (free_quantity + 1)
                         item_counts[key] -= free_count
@@ -91,6 +99,7 @@ def calculate_item_free(prices, item_counts):
                         item_counts[key] = 0
 
 
+# Calculates the group offers, updates item_counts
 def calculate_group_offer(item_count, group_offer, prices):
     value = 0
     group, discount, quantity = group_offer
@@ -99,6 +108,7 @@ def calculate_group_offer(item_count, group_offer, prices):
         if item in item_count:
             new_group += (item * item_count[item])
 
+    # Arrange by most expensive
     new_group_sorted = sorted(new_group, key=lambda x: -prices[x]['price'])
     new_group = ''.join(new_group_sorted)
 
@@ -111,6 +121,7 @@ def calculate_group_offer(item_count, group_offer, prices):
     return value
 
 
+# Calculate the final checkout value using specials
 def calculate_checkout_value(prices, item_counts):
     value = 0
 
@@ -121,5 +132,6 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
 
