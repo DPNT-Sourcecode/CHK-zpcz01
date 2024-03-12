@@ -73,5 +73,3 @@ class TestCheck():
 
     def test_24(self):
         assert checkout_solution.checkout('UUUUUUUU') == 240
-
-
