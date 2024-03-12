@@ -99,6 +99,7 @@ def calculate_group_offer(item_count, group_offer):
 
 
 
+
 def calculate_checkout_value(prices, item_counts):
     value = 0
 
@@ -109,6 +110,7 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
 
 
