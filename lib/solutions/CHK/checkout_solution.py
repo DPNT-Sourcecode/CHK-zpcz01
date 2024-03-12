@@ -7,6 +7,7 @@ def checkout(skus):
     if not isinstance(skus, str):
         return -1
 
+    # Set prices of items with offers
     prices = {
         'A': {'price': 50, 'special_offer': (3, 130)},
         'B': {'price': 30, 'special_offer': (2, 45)},
@@ -29,5 +30,6 @@ def count_items(skus, prices, item_counts):
         else:
             item_counts[item] = 1
 
-        return 0
+    return 0
 
+def calculate_items_value(skus, prices, item_counts):
