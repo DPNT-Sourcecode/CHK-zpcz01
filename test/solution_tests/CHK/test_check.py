@@ -62,3 +62,10 @@ class TestCheck():
     def test_20(self):
         assert checkout_solution.checkout('RRRQ') == 150
 
+    def test_21(self):
+        assert checkout_solution.checkout('UUUU') == 120
+
+    def test_22(self):
+        assert checkout_solution.checkout('UUUUUU') == 200
+
+
