@@ -99,7 +99,8 @@ def calculate_group_offer(item_count, group_offer, prices):
         if item in item_count:
             new_group += (item * item_count[item])
 
-    new_group = sorted(new_group, key=lambda x: -prices.get(x, 0))
+    new_group_sorted = sorted(new_group, key=lambda x: -prices[x]['price'])
+    new_group = ''.join(new_group_sorted)
 
     while len(new_group) >= quantity:
         for i in range(quantity):
@@ -120,4 +121,5 @@ def calculate_checkout_value(prices, item_counts):
             value += count * prices[item]['price']
 
     return value
+
 
